@@ -82,17 +82,26 @@ Output/Release/Obj/ble_app_blinky_pca10040e_s112/main.o: \
  ../../../../../../components/libraries/util/sdk_os.h \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- ../../../../../../components/ble/nrf_ble_qwr/nrf_ble_qwr.h \
+ ../../../../../../components/softdevice/s112/headers/ble_hci.h \
  ../../../../../../components/ble/common/ble_srv_common.h \
  ../../../../../../components/softdevice/s112/headers/ble_types.h \
  ../../../../../../components/softdevice/s112/headers/ble_gap.h \
  ../../../../../../components/softdevice/s112/headers/ble_gatt.h \
- ../../../../../../components/ble/nrf_ble_gatt/nrf_ble_gatt.h \
- ../../../../../../components/ble/common/ble_conn_params.h \
- ../../../../../../components/ble/common/ble_srv_common.h \
  ../../../../../../components/ble/common/ble_advdata.h \
  ../../../../../../components/ble/ble_advertising/ble_advertising.h \
  ../../../../../../components/softdevice/s112/headers/ble_gattc.h \
+ ../../../../../../components/ble/common/ble_conn_params.h \
+ ../../../../../../components/ble/common/ble_srv_common.h \
+ ../../../../../../components/libraries/fds/fds.h \
+ ../../../../../../components/ble/peer_manager/peer_manager.h \
+ ../../../../../../components/ble/peer_manager/peer_manager_types.h \
+ ../../../../../../components/ble/common/ble_gatt_db.h \
+ ../../../../../../components/ble/peer_manager/peer_database.h \
+ ../../../../../../components/ble/peer_manager/peer_manager_internal.h \
+ ../../../../../../components/ble/common/ble_conn_state.h \
+ ../../../../../../components/libraries/atomic/nrf_atomic.h \
+ ../../../../../../components/ble/nrf_ble_gatt/nrf_ble_gatt.h \
+ ../../../../../../components/ble/nrf_ble_qwr/nrf_ble_qwr.h \
  ../../../../../../components/libraries/log/nrf_log.h \
  ../../../../../../components/libraries/strerror/nrf_strerror.h \
  ../../../../../../components/libraries/log/src/nrf_log_internal.h \
@@ -106,4 +115,5 @@ Output/Release/Obj/ble_app_blinky_pca10040e_s112/main.o: \
  ../../../../../../components/libraries/log/nrf_log_default_backends.h \
  C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/epd/epd.h \
  c\:\users\berka\desktop\borda\proje\devicedownload\nrf5sdk1702d674dde\nrf5_sdk_17.0.2_d674dde\examples\ble_peripheral\esl_uc8151_kaan\libraries\font\fonts.h \
- C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/epd/epdif.h
+ C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/epd/epdif.h \
+ C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/services/eink_service.h

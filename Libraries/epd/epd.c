@@ -442,176 +442,11 @@ static void epd_print(bool is_alarm)
     EPD_DisplayFrame(&epd, BW_Image, R_Image, 0, false, is_alarm); /* Display image */
     EPD_Sleep(&epd);
 }
-#if 0
-static void display_alarm_data(void)
-{
-    int n_missing_items = missing_inventory_data[0];
-    int64_t alarm_start_time = k_uptime_get();
-    int64_t volatile time_delta = PRINT_ALARM_DATA_TIMEOUT*60*MSEC_PER_SEC; // in msecs
 
-
-    int64_t current_time = k_uptime_get();
-    while(current_time < alarm_start_time + time_delta)
-    {
-        if(!n_missing_items)
-        {
-            draw_no_alarm();
-            epd_print(false);
-            k_sleep(K_MSEC(time_delta+1000));
-        }
-        //draw_no_alarm();
-        //epd_print(false);
-        //k_sleep(K_SECONDS(10));
-        for(int i = 0; i < n_missing_items; i++)
-        {
-            draw_alarm_data(&missing_inventory_data[4*i+1]);
-            epd_print(true);
-            k_sleep(K_SECONDS(10));
-        }
-        current_time = k_uptime_get();
-    }
-}
-
-static void draw_no_alarm(void)
-{
-    unsigned char str_data[40];
-    Paint_Clear(WHITE);
-
-    Paint_DrawBitMap(tick_bitmap_BW, 96, 96, 2, 8);
-
-    sprintf(str_data, "ALL");
-    Paint_DrawString_EN(120, 40, str_data, &Font20, WHITE, BLACK);
-
-    sprintf(str_data, "SYSTEMS");
-    Paint_DrawString_EN(120, 60, str_data, &Font20, WHITE, BLACK);
-
-    sprintf(str_data, "CLEAR!");
-    Paint_DrawString_EN(120, 80, str_data, &Font20, WHITE, BLACK);
-
-    Paint_DrawBitMap(b_logo_BW, 24, 48, 110, 190);
-}
-
-static void draw_alarm_data(const uint8_t *data)
-{
-    unsigned char str_data[40];
-    Paint_Clear(WHITE);
-
-    Paint_DrawBitMap(&item_bitmaps_BW[data[1]][0], 96, 96, 2, 8);
-
-    sprintf(str_data, "MISSING");
-    Paint_DrawString_EN(110, 10, str_data, &Font20, WHITE, BLACK);
-    sprintf(str_data, "ITEM");
-    Paint_DrawString_EN(110, 25, str_data, &Font20, WHITE, BLACK);
-
-    sprintf(str_data, "TYPE:");
-    Paint_DrawString_EN(110, 50, str_data, &Font16, WHITE, BLACK);
-    sprintf(str_data, "%s", inventory_item_type_names[data[1]]);
-    Paint_DrawString_EN(110, 65, str_data, &Font16, WHITE, BLACK);
-    sprintf(str_data, "BATTERY:");
-    Paint_DrawString_EN(110, 85, str_data, &Font16, WHITE, BLACK);
-    sprintf(str_data, "%u%%", data[3]);
-    Paint_DrawString_EN(110, 100, str_data, &Font16, WHITE, BLACK);
-     
-    Paint_DrawBitMap(b_logo_BW, 24, 48, 110, 190);
-}
-
-static int display_settings_init()
-{
-    int err = -1;
-    strcpy(device_name, CONFIG_BT_DEVICE_NAME);
-    err = 0;
-    return err;
-}
-
-/******************************************************************************
- * Public function definitions
- ******************************************************************************/
-int get_missing_inventory_data(uint8_t *data)
-{
-    int err;
-    
-    err = mon_data_get(data, missing_inventory_data, MON_DATA_MISSING_INVENTORY);
-    if (err)
-    {
-        printk("Error parsing missing inventory data! (err: %d)", err);
-    }
-    else
-    {
-        k_sem_give(&draw_alarm_data_sem);
-    }
-
-    return err;
-}
-
-void draw_env_data(const uint8_t *data)
-{
-    unsigned char str_data[40];
-    int err;
-    int print_height = 40;
-
-    Paint_Clear(WHITE);
-
-    sprintf(str_data, device_name);
-    Paint_DrawString_EN(0, 10, str_data, &Font16, WHITE, BLACK);
-
-    for (int i = 0; i < N_DATA_TYPES; i++)
-    {
-        err = mon_data_get(data, &env_data[i], i);
-        if (!err)
-        {
-            sprintf(str_data, (i == MON_DATA_HUMIDITY || i == MON_DATA_BATTERY_LEVEL) ? "%s : %d%%" : "%s : %d", adv_data_types[i], env_data[i]);
-            Paint_DrawString_EN(0, print_height, str_data, &Font16, WHITE, BLACK);
-            print_height += 20;
-        }
-    }
-}
-
-int enable_print(void)
-{
-    int err = -1;
-    is_print_data = true;
-    err = 0;
-    return err;
-}
-
-int disable_print(void)
-{
-    int err = -1;
-    is_print_data = false;
-    err = 0;
-    return err;
-}
-
-void display_task(void)
-{
-    k_sem_take(&draw_alarm_data_sem, K_FOREVER);
-    //k_sleep(K_SECONDS(10));
-    display_alarm_data(); // After PRINT_ALARM_DATA_TIMEOUT minutes, system is rebooted.
-    sys_reboot(0);
-}
-#endif
-void screen_init(void)
+void display_reserved()
 {
   unsigned char str_data[40];
 
-  paper_turn_on();
-  LED_Init();
-
-  //display_settings_init();
-
-  /* Init e-paper display */
-  EPD_GPIO_Init();
-  EPD_Init(&epd);
-  
-  //EPD_WhiteScreen_ALL_Clean(&epd); /* Display Image */
-  Paint_NewImage(BW_Image, EPD_WIDTH, EPD_SCREEN_HEIGHT, 270, WHITE);      /* Set screen size and display orientation */
-  Paint_NewImage(R_Image, EPD_WIDTH, EPD_SCREEN_HEIGHT, 270, WHITE); /* Set screen size and display orientation */
-  Paint_SetMirroring(MIRROR_VERTICAL);
-  Paint_SelectImage(BW_Image); /* Set the virtual canvas data storage location */
-  //Paint_Clear(WHITE);
-  //EPD_DisplayFrame(&epd, gImage_BW, gImage_R, 0, true, false);
-  //nrf_delay_ms(300);
-  
   Paint_Clear(WHITE);
 
   Paint_DrawBitMap(gImage_request_logo, 128, 128, 0, 120);
@@ -626,6 +461,40 @@ void screen_init(void)
   sprintf(str_data, "Arslan");
   Paint_DrawString_EN(0, 65, str_data, &Font16, WHITE, BLACK);
   epd_print(false);
+}
+
+void display_available()
+{
+  unsigned char str_data[40];
+
+  Paint_Clear(WHITE);
+
+  sprintf(str_data, "AVAILABLE");
+  Paint_DrawString_EN(148, 64, str_data, &Font24, WHITE, BLACK);
+
+  epd_print(false);
+}
+
+void screen_init(void)
+{
+  paper_turn_on();
+  LED_Init();
+
+  /* Init e-paper display */
+  EPD_GPIO_Init();
+  EPD_Init(&epd);
+  
+  Paint_NewImage(BW_Image, EPD_WIDTH, EPD_SCREEN_HEIGHT, 270, WHITE);      /* Set screen size and display orientation */
+  Paint_NewImage(R_Image, EPD_WIDTH, EPD_SCREEN_HEIGHT, 270, WHITE); /* Set screen size and display orientation */
+  Paint_SetMirroring(MIRROR_VERTICAL);
+  Paint_SelectImage(BW_Image); /* Set the virtual canvas data storage location */
+}
+
+void all_leds_off()
+{
+  nrf_gpio_pin_write(LED_RED_PIN, 1);
+  nrf_gpio_pin_write(LED_GREEN_PIN, 1);
+  nrf_gpio_pin_write(LED_BLUE_PIN, 1);
 }
 
 void led_on(uint8_t pin_number)

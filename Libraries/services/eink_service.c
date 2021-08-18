@@ -74,7 +74,7 @@ static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
 
     // Define the eink 2 Characteristic UUID
     ble_uuid.type = p_eink_service->uuid_type;
-    ble_uuid.uuid = BLE_UUID_eink_2_CHAR_UUID;
+    ble_uuid.uuid = BLE_UUID_EINK_2_CHAR_UUID;
 
     // Set permissions on the Characteristic value
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
@@ -111,7 +111,7 @@ uint32_t ble_eink_service_init(ble_eink_service_t *p_eink_service, const ble_ein
     p_eink_service->eink_write_handler = p_eink_service_init->eink_write_handler;
 
     // Add service UUID
-    ble_uuid128_t base_uuid = {BLE_UUID_eink_SERVICE_BASE_UUID};
+    ble_uuid128_t base_uuid = {BLE_UUID_EINK_SERVICE_BASE_UUID};
     err_code = sd_ble_uuid_vs_add(&base_uuid, &p_eink_service->uuid_type);
     if (err_code != NRF_SUCCESS)
     {
@@ -120,7 +120,7 @@ uint32_t ble_eink_service_init(ble_eink_service_t *p_eink_service, const ble_ein
 
     // Set up the UUID for the service (base + service-specific)
     ble_uuid.type = p_eink_service->uuid_type;
-    ble_uuid.uuid = BLE_UUID_eink_SERVICE_UUID;
+    ble_uuid.uuid = BLE_UUID_EINK_SERVICE_UUID;
 
     // Set up and add the service
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY, &ble_uuid, &p_eink_service->service_handle);
