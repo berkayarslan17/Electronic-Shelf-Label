@@ -50,7 +50,7 @@
 // Forward declaration of the custom_service_t type.
 typedef struct ble_eink_service_s ble_eink_service_t;
 
-typedef void (*ble_eink_service_eink_write_handler_t)(uint16_t conn_handle, ble_eink_service_t *p_eink_service, uint8_t new_state);
+typedef void (*ble_eink_service_eink_write_handler_t)(uint16_t conn_handle, ble_eink_service_t *p_eink_service, uint8_t * str_data, uint16_t data_len);
 
 /** @brief eink Service init structure. This structure contains all options and data needed for
  *        initialization of the service.*/

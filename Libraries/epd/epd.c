@@ -66,7 +66,7 @@ static unsigned char BW_Image[EPD_SCREEN_HEIGHT * EPD_WIDTH / 8]; /* Define Blac
 static unsigned char *R_Image;                                    /* Define Red canvas buffer */
 
 static const unsigned char table[250][40] = {"empty string", "Berkay Arslan", "Ata Korkusuz"};                                                          
-;
+
 static bool is_print_data = false;
 
 /**
@@ -418,19 +418,17 @@ static void epd_print(bool is_alarm)
     EPD_Sleep(&epd);
 }
 
-void display_reserved(uint8_t eink_state)
+void display_reserved(unsigned char * str_data)
 {
-  unsigned char str_data[40];
 
   Paint_Clear(WHITE);
 
-  Paint_DrawBitMap(gImage_request_logo, 128, 128, 0, 120);
+  Paint_DrawBitMap(gImage_icon_logo, 128, 128, 0, 120);
 
   Paint_DrawLine(0, 35, 130, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
-  sprintf(str_data, "RESERVED");
-  Paint_DrawString_EN(0, 10, str_data, &Font24, WHITE, BLACK);
 
-  sprintf(str_data, table[eink_state]);
+  Paint_DrawString_EN(0, 10, "RESERVED", &Font24, WHITE, BLACK);
+
   Paint_DrawString_EN(0, 45, str_data, &Font16, WHITE, BLACK);
 
   epd_print(false);

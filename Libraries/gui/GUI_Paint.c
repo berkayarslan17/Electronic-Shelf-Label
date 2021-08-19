@@ -468,6 +468,13 @@ void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char * pString,
             Xpoint = Xstart;
             Ypoint = Ystart;
         }
+        // backslash statement.
+        if(* (pString - 1) == ' ')
+        {
+            Xpoint = Xstart;
+            Ypoint += Font->Height;
+        }
+
         Paint_DrawChar(Xpoint, Ypoint, * pString, Font, Color_Background, Color_Foreground);
 
         //The next character of the address

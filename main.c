@@ -41,7 +41,7 @@
 #define APP_BLE_CONN_CFG_TAG 1
 #define APP_BLE_OBSERVER_PRIO 3
 
-#define DEVICE_NAME "Electronic Shelf Label"
+#define DEVICE_NAME "ESL"
 
 #define MIN_CONN_INTERVAL MSEC_TO_UNITS(100, UNIT_1_25_MS);
 #define MAX_CONN_INTERVAL MSEC_TO_UNITS(200, UNIT_1_25_MS);
@@ -95,7 +95,7 @@ NRF_BLE_GATT_DEF(m_gatt);
 BLE_ADVERTISING_DEF(m_advertising);
 BLE_EINK_SERVICE_DEF(m_eink_service);
 
-static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink_service, uint8_t eink_state);
+static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink_service, uint8_t * data, uint16_t data_len);
 
 static ble_uuid_t m_adv_uuids[] =                                               /**< Universally unique service identifiers. */
 {
@@ -315,18 +315,14 @@ static void ble_stack_init()
  * @param[in] p_eink_service  Instance of eink Service to which the write applies.
  * @param[in] eink_state      Written/desired state of the eink.
  */
-static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink_service, uint8_t eink_state)
+static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink_service, uint8_t * data, uint16_t data_len)
 {
-    if (eink_state)
-    {
-        NRF_LOG_INFO("Displaying Reserved Screen...");
-        display_reserved(eink_state); 
-    }
-    else
-    {
-        NRF_LOG_INFO("Displaying Available Screen...");
-        display_available(); 
-    }
+  NRF_LOG_INFO("Displaying Reserved Screen...");
+  unsigned char* str_data = (unsigned char*) calloc(data_len, sizeof(unsigned char));
+  memcpy(str_data, data, data_len);
+  str_data[data_len] = 0;
+  display_reserved(str_data);
+  free(str_data);
 }
 
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt)

@@ -6,11 +6,14 @@
 */
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "nrf_log.h"
 #include "eink_service.h"
 
-static const uint8_t eink2CharName[] = "eink 2";
+#define ATTR_CHAR_VALUE_INIT_LEN 25
+#define ATTR_CHAR_VALUE_MAX_LEN 25
+static const uint8_t eink_name[] = "Name Surname";
 
 /**@brief Function for handling the Connect event.
  *
@@ -42,9 +45,11 @@ static void on_write(ble_eink_service_t *p_eink_service, ble_evt_t const *p_ble_
 {
     ble_gatts_evt_write_t const *p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
 
-    if ((p_evt_write->handle == p_eink_service->eink_2_char_handles.value_handle) && (p_evt_write->len == 1) && (p_eink_service->eink_write_handler != NULL))
+    NRF_LOG_INFO("Length = %d \r\n", p_evt_write->len);
+    
+    if ((p_evt_write->handle == p_eink_service->eink_2_char_handles.value_handle) && (p_eink_service->eink_write_handler != NULL))
     {
-        p_eink_service->eink_write_handler(p_ble_evt->evt.gap_evt.conn_handle, p_eink_service, p_evt_write->data[0]);
+        p_eink_service->eink_write_handler(p_ble_evt->evt.gap_evt.conn_handle, p_eink_service, p_evt_write->data, p_evt_write->len);
     }
 }
 
@@ -64,9 +69,9 @@ static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
 
     char_md.char_props.read = 1;
     char_md.char_props.write = 1;
-    char_md.p_char_user_desc = eink2CharName;
-    char_md.char_user_desc_size = sizeof(eink2CharName);
-    char_md.char_user_desc_max_size = sizeof(eink2CharName);
+    char_md.p_char_user_desc = eink_name;
+    char_md.char_user_desc_size = sizeof(eink_name);
+    char_md.char_user_desc_max_size = sizeof(eink_name);
     char_md.p_char_pf = NULL;
     char_md.p_user_desc_md = NULL;
     char_md.p_cccd_md = NULL;
@@ -89,9 +94,9 @@ static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
     // Attribute Value settings
     attr_char_value.p_uuid = &ble_uuid;
     attr_char_value.p_attr_md = &attr_md;
-    attr_char_value.init_len = sizeof(uint8_t);
+    attr_char_value.init_len = ATTR_CHAR_VALUE_INIT_LEN;
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len = sizeof(uint8_t);
+    attr_char_value.max_len = ATTR_CHAR_VALUE_MAX_LEN;
     attr_char_value.p_value = NULL;
 
     return sd_ble_gatts_characteristic_add(p_eink_service->service_handle, &char_md,
