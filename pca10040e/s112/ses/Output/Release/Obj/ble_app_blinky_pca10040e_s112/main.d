@@ -1,5 +1,5 @@
 Output/Release/Obj/ble_app_blinky_pca10040e_s112/main.o: \
- C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\ESL_UC8151_Kaan\main.c \
+ C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\main.c \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
@@ -113,7 +113,7 @@ Output/Release/Obj/ble_app_blinky_pca10040e_s112/main.o: \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50d/include/stdlib.h \
  ../../../../../../components/libraries/balloc/nrf_balloc.h \
  ../../../../../../components/libraries/log/nrf_log_default_backends.h \
- C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/epd/epd.h \
- c\:\users\berka\desktop\borda\proje\devicedownload\nrf5sdk1702d674dde\nrf5_sdk_17.0.2_d674dde\examples\ble_peripheral\esl_uc8151_kaan\libraries\font\fonts.h \
- C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/epd/epdif.h \
- C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/ESL_UC8151_Kaan/Libraries/services/eink_service.h
+ C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/Libraries/epd/epd.h \
+ c\:\users\berka\desktop\borda\proje\devicedownload\nrf5sdk1702d674dde\nrf5_sdk_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\libraries\font\fonts.h \
+ C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/Libraries/epd/epdif.h \
+ C\:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/Libraries/services/eink_service.h

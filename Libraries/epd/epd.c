@@ -65,34 +65,9 @@ static EPD epd;
 static unsigned char BW_Image[EPD_SCREEN_HEIGHT * EPD_WIDTH / 8]; /* Define Black canvas buffer */
 static unsigned char *R_Image;                                    /* Define Red canvas buffer */
 
-static char device_name[DEVICE_NAME_MAX_LENGTH];
-
-static const unsigned char adv_data_types[N_DATA_TYPES][DATA_TYPE_MAX_LENGTH] = {"Temperature",
-                                                                                 "Humidity",
-                                                                                 "Battery Level",
-                                                                                 "Device Type"
-                                                                                 "Missing Inventory",
-                                                                                 "Custom"};
-
-const char inventory_item_type_names[6][20] = {"ERROR",
-                                               "DEFAULT", 
-                                               "STETHOSCOPE", 
-                                               "DEFIBRILATOR", 
-                                               "VENTILATOR",
-                                               "ECG"};
-
-static const uint8_t mock_alarm_data[4] = {0x66, 0x05, 0x02, 0x34};
-
-
-//static uint8_t missing_inventory_data[MON_DATA_SIZE+1] = {0x05, 0x66, 0x01, 0x02, 0x34,
-//                                                              0x66, 0x02, 0x02, 0x34,
-//                                                              0x66, 0x03, 0x02, 0x34,
-//                                                              0x66, 0x04, 0x02, 0x34,
-//                                                              0x66, 0x05, 0x02, 0x34};
-
-static uint8_t env_data[N_DATA_TYPES];
+static const unsigned char table[250][40] = {"empty string", "Berkay Arslan", "Ata Korkusuz"};                                                          
+;
 static bool is_print_data = false;
-
 
 /**
  *  @brief: turn on epaper
@@ -443,7 +418,7 @@ static void epd_print(bool is_alarm)
     EPD_Sleep(&epd);
 }
 
-void display_reserved()
+void display_reserved(uint8_t eink_state)
 {
   unsigned char str_data[40];
 
@@ -455,11 +430,9 @@ void display_reserved()
   sprintf(str_data, "RESERVED");
   Paint_DrawString_EN(0, 10, str_data, &Font24, WHITE, BLACK);
 
-  sprintf(str_data, "Berkay");
+  sprintf(str_data, table[eink_state]);
   Paint_DrawString_EN(0, 45, str_data, &Font16, WHITE, BLACK);
 
-  sprintf(str_data, "Arslan");
-  Paint_DrawString_EN(0, 65, str_data, &Font16, WHITE, BLACK);
   epd_print(false);
 }
 

@@ -1,5 +1,5 @@
 Output/Release/Obj/ble_app_blinky_pca10040e_s112/eink_service.o: \
- C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\ESL_UC8151_Kaan\Libraries\services\eink_service.c \
+ C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\Libraries\services\eink_service.c \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50d/include/string.h \
  C\:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.50d/include/__crossworks.h \
  ../../../../../../components/libraries/log/nrf_log.h \
@@ -40,7 +40,7 @@ Output/Release/Obj/ble_app_blinky_pca10040e_s112/eink_service.o: \
  ../../../../../../components/libraries/log/nrf_log_instance.h \
  ../../../../../../components/libraries/log/nrf_log_types.h \
  ../../../../../../components/libraries/log/nrf_log_types.h \
- C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\ESL_UC8151_Kaan\Libraries\services\eink_service.h \
+ C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\Libraries\services\eink_service.h \
  ../../../../../../components/boards/boards.h \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \

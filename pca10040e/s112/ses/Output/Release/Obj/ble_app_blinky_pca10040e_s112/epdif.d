@@ -1,5 +1,5 @@
 Output/Release/Obj/ble_app_blinky_pca10040e_s112/epdif.o: \
- C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\ESL_UC8151_Kaan\Libraries\epd\epdif.c \
+ C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\Libraries\epd\epdif.c \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
@@ -66,7 +66,7 @@ Output/Release/Obj/ble_app_blinky_pca10040e_s112/epdif.o: \
  ../../../../../../components/libraries/log/nrf_log_instance.h \
  ../../../../../../components/libraries/log/nrf_log_types.h \
  ../../../../../../components/libraries/log/nrf_log_types.h \
- C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\ESL_UC8151_Kaan\Libraries\epd\epdif.h \
+ C\:\Users\berka\Desktop\BORDA\Proje\DeviceDownload\nRF5SDK1702d674dde\nRF5_SDK_17.0.2_d674dde\examples\ble_peripheral\electronic_shelf_label\Libraries\epd\epdif.h \
  ../../../../../../components/libraries/util/app_error.h \
  ../../../../../../components/libraries/gfx/nrf_lcd.h \
  ../../../../../../integration/nrfx/legacy/nrf_drv_spi.h \

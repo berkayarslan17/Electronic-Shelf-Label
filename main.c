@@ -319,13 +319,13 @@ static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink
 {
     if (eink_state)
     {
-        NRF_LOG_INFO("Displaying Available Screen...");
-        display_available(); 
+        NRF_LOG_INFO("Displaying Reserved Screen...");
+        display_reserved(eink_state); 
     }
     else
     {
-        NRF_LOG_INFO("Displaying Reserved Screen...");
-        display_reserved(); 
+        NRF_LOG_INFO("Displaying Available Screen...");
+        display_available(); 
     }
 }
 

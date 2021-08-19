@@ -117,7 +117,7 @@ void led_on(uint8_t);
 void LED_Init(void);
 void LED_Run(void);
 void display_available(void);
-void display_reserved(void);
+void display_reserved(uint8_t);
 #endif /* EPD1IN54B_H */
 
 /* END OF FILE */
