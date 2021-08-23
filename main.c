@@ -321,7 +321,12 @@ static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink
   unsigned char* str_data = (unsigned char*) calloc(data_len, sizeof(unsigned char));
   memcpy(str_data, data, data_len);
   str_data[data_len] = 0;
-  display_reserved(str_data);
+  if(str_data[0] == '0')
+  {
+    display_available();
+  }
+  else
+    display_reserved(str_data);
   free(str_data);
 }
 
