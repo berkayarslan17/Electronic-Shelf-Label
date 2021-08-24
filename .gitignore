@@ -1,0 +1,12 @@
+# ignore
+.vscode
+
+# ignore ALL files in ANY directory named:
+pca10040/
+pca10056/
+pca10056e/
+pca10059/
+hex/
+
+#ignore all files ends with:
+*.o
