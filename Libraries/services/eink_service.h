@@ -45,7 +45,8 @@
 
 // Service & characteristics UUIDs
 #define BLE_UUID_EINK_SERVICE_UUID 0x0001
-#define BLE_UUID_EINK_2_CHAR_UUID 0x0002
+#define BLE_UUID_EINK_CHAR_UUID 0x0002
+#define BLE_UUID_EINK_DEVICE_UUID 0x0003
 
 // Forward declaration of the custom_service_t type.
 typedef struct ble_eink_service_s ble_eink_service_t;
@@ -68,7 +69,7 @@ typedef struct ble_eink_service_s
     uint16_t conn_handle;
     uint16_t service_handle;
     uint8_t uuid_type;
-    ble_gatts_char_handles_t eink_2_char_handles;
+    ble_gatts_char_handles_t eink_char_handles;
     ble_eink_service_eink_write_handler_t eink_write_handler;
 
 } ble_eink_service_t;

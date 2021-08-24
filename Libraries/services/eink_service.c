@@ -47,7 +47,7 @@ static void on_write(ble_eink_service_t *p_eink_service, ble_evt_t const *p_ble_
 
     NRF_LOG_INFO("Length = %d \r\n", p_evt_write->len);
     
-    if ((p_evt_write->handle == p_eink_service->eink_2_char_handles.value_handle) && (p_eink_service->eink_write_handler != NULL))
+    if ((p_evt_write->handle == p_eink_service->eink_char_handles.value_handle) && (p_eink_service->eink_write_handler != NULL))
     {
         p_eink_service->eink_write_handler(p_ble_evt->evt.gap_evt.conn_handle, p_eink_service, p_evt_write->data, p_evt_write->len);
     }
@@ -56,7 +56,7 @@ static void on_write(ble_eink_service_t *p_eink_service, ble_evt_t const *p_ble_
 /**@brief Function for adding the eink 2 characteristic.
  *
  */
-static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
+static uint32_t eink_char_add(ble_eink_service_t *p_eink_service)
 {
     ble_gatts_char_md_t char_md;
     ble_gatts_attr_t attr_char_value;
@@ -77,9 +77,9 @@ static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
     char_md.p_cccd_md = NULL;
     char_md.p_sccd_md = NULL;
 
-    // Define the eink 2 Characteristic UUID
+    // Define the eink Characteristic UUID
     ble_uuid.type = p_eink_service->uuid_type;
-    ble_uuid.uuid = BLE_UUID_EINK_2_CHAR_UUID;
+    ble_uuid.uuid = BLE_UUID_EINK_CHAR_UUID;
 
     // Set permissions on the Characteristic value
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
@@ -101,7 +101,7 @@ static uint32_t eink_2_char_add(ble_eink_service_t *p_eink_service)
 
     return sd_ble_gatts_characteristic_add(p_eink_service->service_handle, &char_md,
                                            &attr_char_value,
-                                           &p_eink_service->eink_2_char_handles);
+                                           &p_eink_service->eink_char_handles);
 }
 
 uint32_t ble_eink_service_init(ble_eink_service_t *p_eink_service, const ble_eink_service_init_t *p_eink_service_init)
@@ -136,7 +136,7 @@ uint32_t ble_eink_service_init(ble_eink_service_t *p_eink_service, const ble_ein
 
     // Add the different characteristics in the service:
     //   Button press characteristic:   E54B0002-67F5-479E-8711-B3B99198CE6C
-    err_code = eink_2_char_add(p_eink_service);
+    err_code = eink_char_add(p_eink_service);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
