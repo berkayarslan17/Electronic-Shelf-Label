@@ -74,12 +74,14 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="336" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="318" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="65" y="443" useTextEdit="1" openedFrom="C:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/main.c" useBinaryEdit="0" left="0" path="../../../Libraries/epd/epd.c" selected="0" top="512" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="106" y="51" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/services/eink_service.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="79" y="744" useTextEdit="1" openedFrom="C:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/Libraries/epd/epd.c" useBinaryEdit="0" left="0" path="../../../Libraries/epd/bitmaps.h" selected="0" top="726" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="406" useTextEdit="1" openedFrom="C:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/main.c" useBinaryEdit="0" left="0" path="../../../Libraries/epd/epd.c" selected="0" top="439" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="424" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="407" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="106" y="51" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/services/eink_service.c" selected="0" top="20" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="270" useTextEdit="1" openedFrom="C:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/electronic_shelf_label/Libraries/epd/epd.c" useBinaryEdit="0" left="0" path="../../../Libraries/epd/bitmaps.h" selected="0" top="163" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/epd/epdif.h" selected="0" top="35" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="47" y="42" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/services/eink_service.h" selected="0" top="30" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="47" y="42" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/services/eink_service.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="27" y="111" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/epd/epd.h" selected="0" top="95" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="484" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Libraries/gui/GUI_Paint.c" selected="0" top="457" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ble_app_blinky_pca10040e_s112" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/berka/Desktop/BORDA/Proje/DeviceDownload/nRF5SDK1702d674dde/nRF5_SDK_17.0.2_d674dde/components/ble/ble_advertising" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
