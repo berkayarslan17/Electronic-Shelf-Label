@@ -34,7 +34,7 @@
 
 #define EPD_WIDTH 128
 #define EPD_HEIGHT 296
-#define EPD_SCREEN_HEIGHT 250
+#define EPD_SCREEN_HEIGHT 290
 
 #define EPD_WHITE_SPACE (EPD_HEIGHT - EPD_SCREEN_HEIGHT)
 
@@ -103,8 +103,7 @@ void EPD_Reset(EPD *epd);
 void EPD_SetLutBw(EPD *epd);
 void EPD_SetLutRed(EPD *epd);
 void EPD_DisplayFrame(EPD *epd, const unsigned char *frame_buffer_black, 
-                      const unsigned char *frame_buffer_red, uint8_t update,
-                      bool is_image, bool is_alarm);
+                      const unsigned char *frame_buffer_red);
 void EPD_Sleep(EPD *epd);
 void EPD_DigitalWrite(EPD *epd, int pin, int value);
 int EPD_DigitalRead(EPD *epd, int pin);

@@ -68,12 +68,6 @@
 
 #define BATTERY_LEVEL_MEAS_INTERVAL     APP_TIMER_TICKS(30000)                 /**< Battery level measurement interval (ticks). */
 
-// Base UUID: 6A8BB040-9BDB-4C6C-A8D9-242BA2CFCE7B
-#define BLE_UUID_DEVICE_BASE_UUID                                                                      \
-    {                                                                                                  \
-        0x7B, 0xCE, 0xCF, 0xA2, 0x2B, 0x24, 0xD9, 0xA8, 0x6C, 0x4C, 0xDB, 0x9B, 0x40, 0xB0, 0x8B, 0x6A \
-    }
-
 static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                        /**< Handle of the current connection. */
 
 static uint8_t m_adv_handle = BLE_GAP_ADV_SET_HANDLE_NOT_SET;                   /**< Advertising handle used to identify an advertising set. */
@@ -230,8 +224,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
   {
     case BLE_GAP_EVT_DISCONNECTED:
       NRF_LOG_INFO("Device is disconnected.");
-      all_leds_off(); 
-      led_on(LED_BLUE_PIN);
+      all_leds_off();
+      led_on(LED_RED_PIN);
       break;
 
     case BLE_GAP_EVT_CONNECTED:
@@ -366,7 +360,7 @@ static void advertising_init()
   memset(&init, 0, sizeof(init));
   
   // Add service UUID
-  ble_uuid128_t base_uuid = {BLE_UUID_DEVICE_BASE_UUID};
+  ble_uuid128_t base_uuid = {BLE_UUID_EINK_SERVICE_BASE_UUID};
   uint8_t MY_UUID_TYPE;
 
   err_code = sd_ble_uuid_vs_add(&base_uuid, &MY_UUID_TYPE);

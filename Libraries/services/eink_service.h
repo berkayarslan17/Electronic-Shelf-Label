@@ -40,13 +40,13 @@
 // Base UUID: E54B0000-67F5-479E-8711-B3B99198CE6C
 #define BLE_UUID_EINK_SERVICE_BASE_UUID                                                                \
     {                                                                                                  \
-        0x6C, 0xCE, 0x98, 0x91, 0xB9, 0xB3, 0x11, 0x87, 0x9E, 0x47, 0xF5, 0x67, 0x00, 0x00, 0x4B, 0xE5 \
+        0x6C, 0xCE, 0x98, 0x91, 0xB9, 0xB3, 0x11, 0x87, 0x9E, 0x47, 0xF5, 0x67, 0x00, 0x00, 0x4B, 0xE1 \
     }
 
 // Service & characteristics UUIDs
+#define BLE_UUID_EINK_DEVICE_UUID 0x0000
 #define BLE_UUID_EINK_SERVICE_UUID 0x0001
 #define BLE_UUID_EINK_CHAR_UUID 0x0002
-#define BLE_UUID_EINK_DEVICE_UUID 0x0003
 
 // Forward declaration of the custom_service_t type.
 typedef struct ble_eink_service_s ble_eink_service_t;

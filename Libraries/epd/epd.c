@@ -264,71 +264,51 @@ void EPD_SetLutRed(EPD *epd)
 }
 
 
-void EPD_DisplayFrame(EPD *epd, const unsigned char *BW_Image, const unsigned char *R_Image, uint8_t update, bool is_image, bool is_alarm)
+void EPD_DisplayFrame(EPD *epd, const unsigned char *BW_Image, const unsigned char *R_Image)
 {
   unsigned int Width, Height, i, j;
   Width = (EPD_WIDTH % 8 == 0) ? (EPD_WIDTH / 8) : (EPD_WIDTH / 8 + 1);
   Height = EPD_HEIGHT;
 
-  if (update == 0 || update == 2)
+  EPD_SendCommand(epd, 0x26);
+  for (j = 0; j < Height; j++)
   {
-    EPD_SendCommand(epd, 0x26);
-    for (j = 0; j < Height; j++)
+    for (i = 0; i < Width; i++)
     {
-      for (i = 0; i < Width; i++)
+      if(EPD_WHITE_SPACE)
       {
-        if(EPD_WHITE_SPACE && !is_image)
-        {
-          if(j < EPD_WHITE_SPACE/2 || j > EPD_SCREEN_HEIGHT+EPD_WHITE_SPACE/2-1)
-          { // Side lines are painted red if alarm
-            if(is_alarm)
-            {
-                EPD_SendData(epd,0xFF); // Alarm frame all red!
-            }
-            else
-            {
-                EPD_SendData(epd,0x00); // No alarm
-            } 
-          }
-          else
-          { // No paint
-            EPD_SendData(epd,0x00);
-            //EPD_SendData(epd, ~BW_Image[i + (j-EPD_WHITE_SPACE/2) * Width]);
-          }
-        }
-        else
-        {
-          EPD_SendData(epd, ~BW_Image[i + j * Width]);
-        }
+        EPD_SendData(epd,0x00);
+      }
+      else
+      {
+        EPD_SendData(epd, ~BW_Image[i + j * Width]);
       }
     }
   }
 
-  if (update == 0 || update == 1)
+  EPD_SendCommand(epd, 0x24);
+  for (j = 0; j < Height; j++)
   {
-    EPD_SendCommand(epd, 0x24);
-    for (j = 0; j < Height; j++)
+    for (i = 0; i < Width; i++)
     {
-      for (i = 0; i < Width; i++)
+      if(EPD_WHITE_SPACE)
       {
-        if(EPD_WHITE_SPACE && !is_image)
+        if(j < EPD_WHITE_SPACE/2 || j > EPD_SCREEN_HEIGHT+EPD_WHITE_SPACE/2-1)
         {
-          if(j < EPD_WHITE_SPACE/2 || j > EPD_SCREEN_HEIGHT+EPD_WHITE_SPACE/2-1)
-          {
-            EPD_SendData(epd,0xff);
-          }
-          else
-          {
-            EPD_SendData(epd, BW_Image[i + (j-EPD_WHITE_SPACE/2) * Width]);
-          }
+          EPD_SendData(epd,0xff);
         }
         else
         {
-          EPD_SendData(epd, BW_Image[i + j * Width]);
+          EPD_SendData(epd, BW_Image[i + (j-EPD_WHITE_SPACE/2) * Width]);
         }
+      }
+      else
+      {
+        EPD_SendData(epd, BW_Image[i + j * Width]);
       }
     }
   }
+
   
   EPD_SendCommand(epd, 0x22); //Display Update Control
   EPD_SendData(epd, 0xF7);
@@ -411,39 +391,73 @@ void EPD_WhiteScreen_ALL_Clean(EPD *epd)
  * Private function definitions
  ******************************************************************************/
 
-static void epd_print(bool is_alarm)
+static void epd_print(void)
 {
     EPD_Reset(&epd);
-    EPD_DisplayFrame(&epd, BW_Image, R_Image, 0, false, is_alarm); /* Display image */
+    EPD_DisplayFrame(&epd, BW_Image, R_Image); /* Display image */
     EPD_Sleep(&epd);
 }
 
 void display_reserved(unsigned char * str_data)
 {
-
   Paint_Clear(WHITE);
 
-  Paint_DrawBitMap(gImage_icon_logo, 128, 128, 0, 120);
+  Paint_DrawBitMap(gImage_reserved_logo, 128, 128, 0, 150);
 
-  Paint_DrawLine(0, 35, 130, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+  Paint_DrawLine(10, 40, 140, 40, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
 
-  Paint_DrawString_EN(0, 10, "RESERVED", &Font24, WHITE, BLACK);
+  Paint_DrawString_EN(10, 15, "RESERVED", &Font24, WHITE, BLACK);
 
-  Paint_DrawString_EN(0, 45, str_data, &Font16, WHITE, BLACK);
+  Paint_DrawString_EN(10, 50, str_data, &Font20, WHITE, BLACK);
 
-  epd_print(false);
+  epd_print();
 }
 
 void display_available()
 {
-  unsigned char str_data[40];
-
   Paint_Clear(WHITE);
+  
+  Paint_DrawBitMap(gImage_available_logo, 128, 128, 0, 150);
 
-  sprintf(str_data, "AVAILABLE");
-  Paint_DrawString_EN(148, 64, str_data, &Font24, WHITE, BLACK);
+  Paint_DrawLine(10, 40, 160, 40, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
 
-  epd_print(false);
+  Paint_DrawString_EN(10, 15, "AVAILABLE", &Font24, WHITE, BLACK);
+
+  Paint_DrawString_EN(10, 50, "WAITING CHECK-IN", &Font20, WHITE, BLACK);
+
+  epd_print();
+}
+
+void display_next_event()
+{
+  Paint_Clear(WHITE);
+  
+  Paint_DrawBitMap(gImage_next_event_logo, 128, 128, 0, 120);
+
+  Paint_DrawLine(0, 25, 130, 25, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+
+  Paint_DrawString_EN(0, 5, "NEXT-EVENT", &Font24, WHITE, BLACK);
+
+  Paint_DrawString_EN(25, 45, "Today", &Font16, WHITE, BLACK);
+
+  Paint_DrawString_EN(25, 70, "16:00", &Font16, WHITE, BLACK);
+
+  epd_print();
+}
+
+void display_busy()
+{
+  Paint_Clear(WHITE);
+  
+  Paint_DrawBitMap(gImage_busy_logo, 128, 128, 0, 120);
+
+  Paint_DrawLine(0, 35, 145, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+
+  Paint_DrawString_EN(0, 10, "BUSY-TILL", &Font24, WHITE, BLACK);
+
+  Paint_DrawString_EN(20, 60, "23:59", &Font24, WHITE, BLACK);
+
+  epd_print();
 }
 
 void screen_init(void)
