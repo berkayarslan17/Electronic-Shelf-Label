@@ -423,39 +423,69 @@ void display_available()
 
   Paint_DrawString_EN(10, 15, "AVAILABLE", &Font24, WHITE, BLACK);
 
-  Paint_DrawString_EN(10, 50, "WAITING CHECK-IN", &Font20, WHITE, BLACK);
+  Paint_DrawString_EN(10, 50, "WAITING^CHECK-IN", &Font20, WHITE, BLACK);
 
   epd_print();
 }
 
-void display_next_event()
+//void display_next_event()
+//{
+//  Paint_Clear(WHITE);
+  
+//  Paint_DrawBitMap(gImage_next_event_logo, 128, 128, 0, 120);
+
+//  Paint_DrawLine(0, 25, 130, 25, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+
+//  Paint_DrawString_EN(0, 5, "NEXT-EVENT", &Font24, WHITE, BLACK);
+
+//  Paint_DrawString_EN(25, 45, "Today", &Font16, WHITE, BLACK);
+
+//  Paint_DrawString_EN(25, 70, "16:00", &Font16, WHITE, BLACK);
+
+//  epd_print();
+//}
+
+//void display_busy()
+//{
+//  Paint_Clear(WHITE);
+  
+//  Paint_DrawBitMap(gImage_busy_logo, 128, 128, 0, 120);
+
+//  Paint_DrawLine(0, 35, 145, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+
+//  Paint_DrawString_EN(0, 10, "BUSY-TILL", &Font24, WHITE, BLACK);
+
+//  Paint_DrawString_EN(20, 60, "23:59", &Font24, WHITE, BLACK);
+
+//  epd_print();
+//}
+
+void display_next_event(unsigned char * str_data)
 {
   Paint_Clear(WHITE);
-  
-  Paint_DrawBitMap(gImage_next_event_logo, 128, 128, 0, 120);
 
-  Paint_DrawLine(0, 25, 130, 25, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+  Paint_DrawBitMap(gImage_next_event_logo, 128, 128, 0, 140);
+
+  Paint_DrawLine(0, 27, 163, 27, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
 
   Paint_DrawString_EN(0, 5, "NEXT-EVENT", &Font24, WHITE, BLACK);
 
-  Paint_DrawString_EN(25, 45, "Today", &Font16, WHITE, BLACK);
-
-  Paint_DrawString_EN(25, 70, "16:00", &Font16, WHITE, BLACK);
+  Paint_DrawString_EN(20, 45, str_data, &Font20, WHITE, BLACK);
 
   epd_print();
 }
 
-void display_busy()
+void display_busy(unsigned char * str_data)
 {
   Paint_Clear(WHITE);
-  
-  Paint_DrawBitMap(gImage_busy_logo, 128, 128, 0, 120);
 
-  Paint_DrawLine(0, 35, 145, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
+  Paint_DrawBitMap(gImage_busy_logo, 128, 128, 0, 140);
+
+  Paint_DrawLine(0, 35, 148, 35, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_2X2);
 
   Paint_DrawString_EN(0, 10, "BUSY-TILL", &Font24, WHITE, BLACK);
 
-  Paint_DrawString_EN(20, 60, "23:59", &Font24, WHITE, BLACK);
+  Paint_DrawString_EN(20, 40, str_data, &Font24, WHITE, BLACK);
 
   epd_print();
 }

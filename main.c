@@ -74,6 +74,11 @@ static uint8_t m_adv_handle = BLE_GAP_ADV_SET_HANDLE_NOT_SET;                   
 static uint8_t m_enc_advdata[BLE_GAP_ADV_SET_DATA_SIZE_MAX];                    /**< Buffer for storing an encoded advertising set. */
 static uint8_t m_enc_scan_response_data[BLE_GAP_ADV_SET_DATA_SIZE_MAX];         /**< Buffer for storing an encoded scan data. */
 
+unsigned char str_data[40] = {0},   // Name Surname string
+              buf_data[20] = {0};
+unsigned int str_ptr = 0;           // Indicator of the str_data string
+
+
 /**@brief Struct that contains pointers to the encoded advertising data. */
 static ble_gap_adv_data_t m_adv_data =
 {
@@ -311,19 +316,31 @@ static void ble_stack_init()
  * @param[in] p_eink_service  Instance of eink Service to which the write applies.
  * @param[in] eink_state      Written/desired state of the eink.
  */
+/*
+ Hikaye ne?
+ Eger gonderilen data 20 karakterden fazla ise str_data array'ini ona gore konfigure etmeliyiz.
+ Pointer: Data len toplamini tutacak. Isaret ettigi yer # karakterini gosteriyorsa display edecek.
+ Array'i statik olusturacagiz.
+ */ 
 static void eink_write_handler(uint16_t conn_handle, ble_eink_service_t * p_eink_service, uint8_t * data, uint16_t data_len)
 {
   NRF_LOG_INFO("Displaying Reserved Screen...");
   unsigned char* str_data = (unsigned char*) calloc(data_len, sizeof(unsigned char));
   memcpy(str_data, data, data_len);
   str_data[data_len] = 0;
+  
   if(str_data[0] == '0')
   {
     display_available();
   }
+  
   else
+  {
     display_reserved(str_data);
+  }
+  
   free(str_data);
+
 }
 
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
